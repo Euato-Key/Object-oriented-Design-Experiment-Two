@@ -1,0 +1,33 @@
+classDiagram
+    class SecurityMonitoringSystem {
+        +monitor(device)
+        +detectAnomaly(data)
+        +createAlert(type, level)
+    }
+
+    class SecurityAlert {
+        +String alertId
+        +String type
+        +String riskLevel
+        +String status
+        +String details
+        +updateStatus(newStatus)
+    }
+
+    class AlertHandler {
+        +handleAlert(alert)
+        +isolateDevice(device)
+        +markAsFalsePositive(alert)
+    }
+
+    class ProcessingLog {
+        +String logId
+        +Date timestamp
+        +String action
+        +String operator
+    }
+
+    SecurityMonitoringSystem --> SecurityAlert : creates
+    AlertHandler --> SecurityAlert : processes
+    AlertHandler --> ProcessingLog : records
+    SecurityAlert "1" --> "0..*" ProcessingLog : has

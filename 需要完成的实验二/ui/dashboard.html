@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>仪表盘 - 物联网设备知识图谱交互管理平台</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --sidebar-bg: #1e293b;
+            --card-bg: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-color: #6366f1;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-primary);
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background: var(--sidebar-bg);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-item {
+            padding: 12px 15px;
+            margin-bottom: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+            text-decoration: none;
+            display: block;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--accent-color);
+        }
+
+        /* Main Content */
+        .main {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .header h2 {
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: var(--accent-color);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .stat-title {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .stat-trend {
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+
+        .trend-up {
+            color: var(--success-color);
+        }
+
+        .trend-down {
+            color: var(--danger-color);
+        }
+
+        /* Charts Section */
+        .charts-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        .chart-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            height: 300px;
+        }
+
+        .chart-placeholder {
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo">IoT KG Platform</div>
+        <a href="dashboard.html" class="nav-item active">仪表盘</a>
+        <a href="device_list.html" class="nav-item">设备管理</a>
+        <a href="topology.html" class="nav-item">图谱分析</a>
+        <a href="#" class="nav-item">告警中心</a>
+        <a href="#" class="nav-item">系统设置</a>
+    </div>
+
+    <div class="main">
+        <div class="header">
+            <h2>系统概览</h2>
+            <div class="user-profile">
+                <span>管理员</span>
+                <div class="avatar"></div>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-title">在线设备</div>
+                <div class="stat-value">12,450</div>
+                <div class="stat-trend trend-up">↑ 12% 较上周</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">今日告警</div>
+                <div class="stat-value" style="color: var(--danger-color)">23</div>
+                <div class="stat-trend trend-down">↓ 5% 较昨日</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">图谱节点数</div>
+                <div class="stat-value">85,120</div>
+                <div class="stat-trend trend-up">↑ 1.2% 新增</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">系统负载</div>
+                <div class="stat-value">45%</div>
+                <div class="stat-trend trend-up">稳定运行</div>
+            </div>
+        </div>
+
+        <div class="charts-container">
+            <div class="chart-card">
+                <div class="stat-title">设备流量趋势 (近24小时)</div>
+                <div class="chart-placeholder">
+                    [折线图区域：展示设备接入流量变化]
+                </div>
+            </div>
+            <div class="chart-card">
+                <div class="stat-title">告警类型分布</div>
+                <div class="chart-placeholder">
+                    [饼图区域：各类告警占比]
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

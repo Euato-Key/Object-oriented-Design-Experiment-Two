@@ -1,0 +1,21 @@
+sequenceDiagram
+    participant Device
+    participant Gateway
+    participant AuthService
+    participant CertValidator
+    participant DB
+
+    Device->>Gateway: Connect Request (Cert)
+    Gateway->>AuthService: Forward Auth Request
+    AuthService->>CertValidator: Validate Certificate
+    CertValidator-->>AuthService: Valid/Invalid
+    alt is Valid
+        AuthService->>DB: Check Device Registration
+        DB-->>AuthService: Device Info
+        AuthService->>AuthService: Generate Access Token
+        AuthService-->>Gateway: Auth Success (Token)
+        Gateway-->>Device: Connection Accepted
+    else is Invalid
+        AuthService-->>Gateway: Auth Failed
+        Gateway-->>Device: Connection Refused
+    end

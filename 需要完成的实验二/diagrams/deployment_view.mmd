@@ -1,0 +1,29 @@
+deploymentDiagram
+    node "物联网设备层" {
+        node "传感器/执行器" as Device
+        node "边缘网关" as Gateway
+    }
+
+    node "平台服务端" {
+        node "接入服务器 (MQTT/CoAP)" as AccessServer
+        node "应用服务器 (Web/API)" as AppServer
+        node "数据存储" {
+            database "关系数据库 (MySQL)" as RDBMS
+            database "图数据库 (Neo4j)" as GraphDB
+            database "时序数据库 (InfluxDB)" as TSDB
+        }
+    }
+
+    node "用户终端" {
+        node "Web浏览器 (PC)" as PC
+        node "移动端App" as Mobile
+    }
+
+    Device -- Gateway : Zigbee/Bluetooth
+    Gateway -- AccessServer : MQTT/CoAP (TLS)
+    AccessServer -- AppServer : Internal API
+    AppServer -- RDBMS : JDBC
+    AppServer -- GraphDB : Bolt/HTTP
+    AppServer -- TSDB : HTTP
+    PC -- AppServer : HTTPS
+    Mobile -- AppServer : HTTPS

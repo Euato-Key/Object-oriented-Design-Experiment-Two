@@ -1,0 +1,24 @@
+sequenceDiagram
+    participant Engineer as OpsEngineer
+    participant System as DeploymentSystem
+    participant Env as TargetEnvironment
+    participant Backup as BackupService
+    participant Engine as DeploymentEngine
+
+    Engineer->>System: Start Deployment (Pkg, Env)
+    System->>System: Validate Package
+    System->>Env: Check Compatibility
+    Env-->>System: Compatible
+    System->>Backup: Create Backup
+    Backup-->>System: Backup Created
+    System->>Engine: Install Package
+    alt Install Success
+        Engine-->>System: Install Done
+        System->>Engine: Restart Services
+        System->>System: Health Check
+        System-->>Engineer: Deployment Success
+    else Install Failed
+        Engine-->>System: Error
+        System->>Backup: Restore Backup
+        System-->>Engineer: Deployment Failed (Rolled Back)
+    end

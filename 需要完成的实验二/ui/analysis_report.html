@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>分析报告 - 物联网管理平台</title>
+    <style>
+        :root {
+            --bg-color: #f5f7fa;
+            --text-color: #333;
+            --card-bg: white;
+            --primary-color: #4ecca3;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 40px;
+        }
+
+        .report-paper {
+            background: var(--card-bg);
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            padding: 20mm;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 20px;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: space-between;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 0.9em;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section h3 {
+            color: #2c3e50;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 10px;
+        }
+
+        .chart-placeholder {
+            background: #f0f2f5;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            color: #888;
+            margin: 15px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f8f9fa;
+        }
+
+        .status-risk {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="report-paper">
+        <h1>设备预测性维护分析报告</h1>
+
+        <div class="meta-info">
+            <div>报告编号：RPT-20231128-09</div>
+            <div>生成时间：2023-11-28 16:00</div>
+            <div>分析对象：智能制造车间 A区设备组</div>
+        </div>
+
+        <div class="section">
+            <h3>1. 总体健康评分</h3>
+            <div style="font-size: 48px; color: #4ecca3; text-align: center; margin: 20px 0;">
+                85 <span style="font-size: 16px; color: #666;">/ 100</span>
+            </div>
+            <p>基于过去30天的运行数据分析，该设备组整体运行状况良好，但部分设备存在潜在故障风险。</p>
+        </div>
+
+        <div class="section">
+            <h3>2. 风险预测趋势</h3>
+            <div class="chart-placeholder">
+                [此处展示故障概率预测趋势图]
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>3. 维护建议清单</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>设备ID</th>
+                        <th>预测故障类型</th>
+                        <th>故障概率</th>
+                        <th>建议维护时间</th>
+                        <th>建议措施</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>CNC-Machine-04</td>
+                        <td>主轴轴承磨损</td>
+                        <td class="status-risk">89%</td>
+                        <td>3天内</td>
+                        <td>更换轴承润滑油，检查振动频谱</td>
+                    </tr>
+                    <tr>
+                        <td>Robot-Arm-02</td>
+                        <td>伺服电机过热</td>
+                        <td>45%</td>
+                        <td>2周内</td>
+                        <td>清理散热风扇，检查负载情况</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h3>4. 结论</h3>
+            <p>建议立即对 CNC-Machine-04 进行停机维护，以避免非计划性停产。其他设备可维持当前运行状态，并在下一次例行巡检中重点关注。</p>
+        </div>
+    </div>
+</body>
+
+</html>

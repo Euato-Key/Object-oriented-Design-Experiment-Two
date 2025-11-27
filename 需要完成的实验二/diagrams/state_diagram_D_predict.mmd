@@ -1,0 +1,10 @@
+stateDiagram-v2
+    [*] --> Created
+    Created --> FetchingData : Start Task
+    FetchingData --> Analyzing : Data Ready
+    FetchingData --> Failed : Data Error
+    Analyzing --> GeneratingReport : Inference Done
+    Analyzing --> Failed : Model Error
+    GeneratingReport --> Completed : Report Saved
+    Completed --> [*]
+    Failed --> [*]

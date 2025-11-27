@@ -1,0 +1,18 @@
+sequenceDiagram
+    participant User
+    participant Service as PredictionService
+    participant Task as PredictionTask
+    participant DB as DeviceDB
+    participant Model as MLModel
+
+    User->>Service: Request Prediction (DeviceID)
+    Service->>Task: Create Task
+    Service-->>User: Task Created (ID)
+    Task->>DB: Fetch Historical Data
+    DB-->>Task: Data
+    Task->>Model: Run Inference
+    Model-->>Task: Result (Failure Probability)
+    Task->>Task: Generate Report
+    Task-->>User: Notification (Ready)
+    User->>Service: Get Report
+    Service-->>User: Maintenance Report

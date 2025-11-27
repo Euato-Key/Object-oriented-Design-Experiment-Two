@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设备注册 - 物联网管理平台</title>
+    <style>
+        :root {
+            --bg-color: #1a1a2e;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-color: #e0e0e0;
+            --accent-color: #4ecca3;
+            --input-bg: rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--accent-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            background: var(--input-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            color: white;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: var(--accent-color);
+            border: none;
+            border-radius: 5px;
+            color: #1a1a2e;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>设备注册</h2>
+        <form>
+            <div class="form-group">
+                <label>设备名称</label>
+                <input type="text" placeholder="输入设备名称">
+            </div>
+            <div class="form-group">
+                <label>设备类型</label>
+                <select>
+                    <option>智能传感器</option>
+                    <option>工业网关</option>
+                    <option>监控摄像头</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>通信协议</label>
+                <select>
+                    <option>MQTT</option>
+                    <option>CoAP</option>
+                    <option>HTTP</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>所属分组</label>
+                <input type="text" placeholder="选择分组">
+            </div>
+            <div class="form-group">
+                <label>备注</label>
+                <textarea rows="3"></textarea>
+            </div>
+            <button type="button">生成证书并注册</button>
+        </form>
+    </div>
+</body>
+
+</html>

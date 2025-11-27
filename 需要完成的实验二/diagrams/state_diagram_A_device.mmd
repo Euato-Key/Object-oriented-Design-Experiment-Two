@@ -1,0 +1,11 @@
+stateDiagram-v2
+    [*] --> Disconnected
+    Disconnected --> Connecting : Connect Request
+    Connecting --> Authenticating : Handshake
+    Authenticating --> Authenticated : Auth Success
+    Authenticating --> Disconnected : Auth Failed
+    Authenticated --> Online : Session Established
+    Online --> Disconnected : Disconnect/Timeout
+    Online --> Reauthenticating : Token Expired
+    Reauthenticating --> Authenticated : Refresh Success
+    Reauthenticating --> Disconnected : Refresh Failed

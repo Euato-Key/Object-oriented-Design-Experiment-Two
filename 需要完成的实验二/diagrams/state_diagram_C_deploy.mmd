@@ -1,0 +1,13 @@
+stateDiagram-v2
+    [*] --> NotStarted
+    NotStarted --> Validating : Start Deployment
+    Validating --> BackingUp : Validation Pass
+    Validating --> Failed : Validation Fail
+    BackingUp --> Deploying : Backup Success
+    Deploying --> RollingBack : Install Fail
+    Deploying --> HealthChecking : Install Success
+    HealthChecking --> Completed : Check Pass
+    HealthChecking --> RollingBack : Check Fail
+    RollingBack --> Failed : Rollback Done
+    Completed --> [*]
+    Failed --> [*]

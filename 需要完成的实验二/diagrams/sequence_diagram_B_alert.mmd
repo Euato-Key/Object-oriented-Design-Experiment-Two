@@ -1,0 +1,17 @@
+sequenceDiagram
+    participant MonitorSys as SecurityMonitoringSystem
+    participant Admin as SystemAdmin
+    participant Alert as SecurityAlert
+    participant Handler as AlertHandler
+    participant Device
+
+    MonitorSys->>MonitorSys: Detect Anomaly
+    MonitorSys->>Alert: Create Alert (Pending)
+    MonitorSys-->>Admin: Notify Alert
+    Admin->>Alert: View Details
+    Admin->>Handler: Execute Response (Isolate)
+    Handler->>Device: Isolate Command
+    Device-->>Handler: Isolation Success
+    Handler->>Alert: Update Status (Processed)
+    Handler->>Alert: Add Log Entry
+    Admin->>Alert: Close Alert

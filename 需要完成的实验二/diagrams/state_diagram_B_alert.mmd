@@ -1,0 +1,8 @@
+stateDiagram-v2
+    [*] --> Pending : Alert Created
+    Pending --> Investigating : Admin Views
+    Investigating --> Processed : Action Taken
+    Investigating --> FalsePositive : Marked as False Positive
+    Processed --> Closed : Admin Confirms
+    FalsePositive --> Closed : Admin Confirms
+    Closed --> [*]

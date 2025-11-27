@@ -1,0 +1,32 @@
+classDiagram
+    class GraphBuilder {
+        +extractEntities(data)
+        +buildRelations(entities)
+        +updateGraph(graphDB)
+    }
+
+    class PredictionService {
+        +predictMaintenance(device)
+        +loadModel(modelId)
+    }
+
+    class GraphQueryEngine {
+        +findImpactScope(device)
+        +findRootCause(alert)
+    }
+
+    class PredictionTask {
+        +String taskId
+        +String status
+        +run()
+    }
+
+    class MaintenanceReport {
+        +String reportId
+        +List suggestions
+        +Double confidence
+    }
+
+    PredictionService --> PredictionTask : creates
+    PredictionTask --> MaintenanceReport : generates
+    GraphBuilder --> GraphQueryEngine : updates DB for

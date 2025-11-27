@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设备管理 - 物联网设备知识图谱交互管理平台</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --sidebar-bg: #1e293b;
+            --card-bg: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-color: #6366f1;
+            --border-color: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-primary);
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: var(--sidebar-bg);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--border-color);
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            color: var(--accent-color);
+        }
+
+        .nav-item {
+            padding: 12px 15px;
+            margin-bottom: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: block;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--accent-color);
+        }
+
+        .main {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .btn-primary {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .table-container {
+            background: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background: rgba(0, 0, 0, 0.2);
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        tr:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+
+        .status-online {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+        }
+
+        .status-offline {
+            background: rgba(148, 163, 184, 0.2);
+            color: #94a3b8;
+        }
+
+        .status-alert {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        .action-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo">IoT KG Platform</div>
+        <a href="dashboard.html" class="nav-item">仪表盘</a>
+        <a href="device_list.html" class="nav-item active">设备管理</a>
+        <a href="topology.html" class="nav-item">图谱分析</a>
+        <a href="#" class="nav-item">告警中心</a>
+        <a href="#" class="nav-item">系统设置</a>
+    </div>
+
+    <div class="main">
+        <div class="header">
+            <h2>设备列表</h2>
+            <button class="btn btn-primary">+ 新增设备</button>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>设备ID</th>
+                        <th>设备名称</th>
+                        <th>类型</th>
+                        <th>IP地址</th>
+                        <th>状态</th>
+                        <th>最后在线</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>DEV-00123</td>
+                        <td>智能电表-A区-01</td>
+                        <td>SmartMeter</td>
+                        <td>192.168.1.101</td>
+                        <td><span class="status-badge status-online">在线</span></td>
+                        <td>刚刚</td>
+                        <td>
+                            <a href="#" class="action-link">详情</a>
+                            <a href="#" class="action-link">配置</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>DEV-00124</td>
+                        <td>温湿度传感器-B区</td>
+                        <td>Sensor-TH</td>
+                        <td>192.168.1.102</td>
+                        <td><span class="status-badge status-alert">告警</span></td>
+                        <td>1分钟前</td>
+                        <td>
+                            <a href="#" class="action-link">详情</a>
+                            <a href="#" class="action-link">查看告警</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>DEV-00125</td>
+                        <td>工业网关-C区</td>
+                        <td>Gateway-X</td>
+                        <td>192.168.1.200</td>
+                        <td><span class="status-badge status-offline">离线</span></td>
+                        <td>2小时前</td>
+                        <td>
+                            <a href="#" class="action-link">详情</a>
+                            <a href="#" class="action-link">诊断</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

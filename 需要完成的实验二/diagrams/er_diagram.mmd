@@ -1,0 +1,94 @@
+erDiagram
+    Device ||--o{ Alert : generates
+    Device ||--o{ Telemetry : produces
+    Device }|--|| DeviceType : belongs_to
+    Device }|--o{ DeviceGroup : member_of
+    Device ||--o{ OperationLog : target_of
+    Device ||--o{ DeviceConfig : has_history
+    
+    User ||--o{ Device : manages
+    User ||--o{ Alert : handles
+    User ||--o{ OperationLog : performs
+    User }|--|| Role : has_role
+    
+    Role ||--o{ Permission : has_permission
+    
+    Alert }|--|| AlertRule : triggered_by
+    
+    DeploymentPackage ||--o{ DeploymentTask : used_in
+    DeploymentTask }|--|| Device : targets
+    
+    Device {
+        string device_id PK
+        string name
+        string status
+        string type_id FK
+        datetime last_seen
+    }
+
+    DeviceType {
+        string type_id PK
+        string name
+        string protocol
+    }
+
+    DeviceGroup {
+        string group_id PK
+        string name
+        string description
+    }
+
+    Alert {
+        string alert_id PK
+        string device_id FK
+        string rule_id FK
+        string severity
+        string status
+        datetime created_at
+    }
+
+    AlertRule {
+        string rule_id PK
+        string name
+        string condition
+        string severity
+    }
+
+    User {
+        string user_id PK
+        string username
+        string role_id FK
+    }
+
+    Role {
+        string role_id PK
+        string name
+    }
+
+    Permission {
+        string perm_id PK
+        string code
+        string description
+    }
+
+    OperationLog {
+        string log_id PK
+        string user_id FK
+        string device_id FK
+        string action
+        datetime timestamp
+    }
+
+    DeviceConfig {
+        string config_id PK
+        string device_id FK
+        string version
+        json content
+        datetime created_at
+    }
+
+    DeploymentPackage {
+        string package_id PK
+        string version
+        string url
+    }

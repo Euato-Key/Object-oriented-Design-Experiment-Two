@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>组件部署向导 - 物联网管理平台</title>
+    <style>
+        :root {
+            --bg-color: #1a1a2e;
+            --card-bg: #16213e;
+            --text-color: #e0e0e0;
+            --accent-color: #4ecca3;
+        }
+
+        body {
+            font-family: sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            padding-top: 50px;
+        }
+
+        .wizard-container {
+            width: 600px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .steps::after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #333;
+            z-index: 0;
+        }
+
+        .step {
+            background: var(--card-bg);
+            z-index: 1;
+            padding: 0 10px;
+            text-align: center;
+        }
+
+        .step-circle {
+            width: 30px;
+            height: 30px;
+            background: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 5px;
+            border: 2px solid #555;
+        }
+
+        .step.active .step-circle {
+            background: var(--accent-color);
+            color: #1a1a2e;
+            border-color: var(--accent-color);
+        }
+
+        .content {
+            min-height: 200px;
+        }
+
+        .file-drop {
+            border: 2px dashed #555;
+            padding: 40px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .file-drop:hover {
+            border-color: var(--accent-color);
+            background: rgba(78, 204, 163, 0.1);
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 10px 25px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-next {
+            background: var(--accent-color);
+            color: #1a1a2e;
+            font-weight: bold;
+        }
+
+        .btn-prev {
+            background: #333;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wizard-container">
+        <div class="steps">
+            <div class="step active">
+                <div class="step-circle">1</div>
+                <div>上传组件</div>
+            </div>
+            <div class="step">
+                <div class="step-circle">2</div>
+                <div>环境检查</div>
+            </div>
+            <div class="step">
+                <div class="step-circle">3</div>
+                <div>执行部署</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <h3>上传部署包</h3>
+            <p>请选择需要部署的系统组件包 (.zip, .tar.gz)</p>
+            <div class="file-drop">
+                <p>点击或拖拽文件到此处</p>
+                <small>支持最大 500MB</small>
+            </div>
+            <div class="form-group">
+                <label>版本号</label>
+                <input type="text" value="v2.1.0"
+                    style="background:#333; border:none; color:white; padding:8px; border-radius:4px;">
+            </div>
+        </div>
+
+        <div class="footer">
+            <button class="btn-prev" disabled>上一步</button>
+            <button class="btn-next">下一步</button>
+        </div>
+    </div>
+</body>
+
+</html>

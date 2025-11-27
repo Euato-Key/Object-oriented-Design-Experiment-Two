@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>告警处理 - 物联网管理平台</title>
+    <style>
+        :root {
+            --bg-color: #1a1a2e;
+            --card-bg: #16213e;
+            --text-color: #e0e0e0;
+            --danger-color: #e94560;
+            --success-color: #4ecca3;
+        }
+
+        body {
+            font-family: sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 20px;
+        }
+
+        .alert-detail {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 800px;
+            margin: 0 auto;
+            border-left: 5px solid var(--danger-color);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background: var(--danger-color);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8em;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .info-item label {
+            color: #888;
+            font-size: 0.9em;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-isolate {
+            background: var(--danger-color);
+            color: white;
+        }
+
+        .btn-ignore {
+            background: #555;
+            color: white;
+        }
+
+        .btn-resolve {
+            background: var(--success-color);
+            color: #1a1a2e;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="alert-detail">
+        <div class="header">
+            <h2>告警详情 #ALT-20231128-001</h2>
+            <span class="tag">CRITICAL</span>
+        </div>
+        <div class="info-grid">
+            <div class="info-item">
+                <label>告警源设备</label>
+                <div>Gateway-XJ-09 (192.168.1.105)</div>
+            </div>
+            <div class="info-item">
+                <label>告警类型</label>
+                <div>异常流量访问</div>
+            </div>
+            <div class="info-item">
+                <label>发生时间</label>
+                <div>2023-11-28 14:32:11</div>
+            </div>
+            <div class="info-item">
+                <label>持续时长</label>
+                <div>15分钟</div>
+            </div>
+            <div class="info-item" style="grid-column: span 2;">
+                <label>详细描述</label>
+                <div>检测到设备在短时间内向外部未知IP (45.33.xx.xx) 发送大量数据包，超过正常阈值 500%。疑似被植入僵尸网络程序。</div>
+            </div>
+        </div>
+        <div class="actions">
+            <button class="btn-ignore">标记误报</button>
+            <button class="btn-isolate">隔离设备</button>
+            <button class="btn-resolve">已处理</button>
+        </div>
+    </div>
+</body>
+
+</html>

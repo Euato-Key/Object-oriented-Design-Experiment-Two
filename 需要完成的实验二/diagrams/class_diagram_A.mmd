@@ -1,0 +1,37 @@
+classDiagram
+    class Device {
+        +String deviceId
+        +String status
+        +connect()
+        +disconnect()
+    }
+
+    class AuthenticationService {
+        +authenticate(credentials)
+        +validateCertificate(cert)
+        +generateToken(device)
+    }
+
+    class CertificateValidator {
+        +verify(cert)
+    }
+
+    class SecurityPolicy {
+        +checkPolicy(device)
+    }
+
+    class AccessToken {
+        +String token
+        +Date expiry
+        +isValid()
+    }
+
+    class AuditLogger {
+        +logEvent(event)
+    }
+
+    Device "1" --> "1" AuthenticationService : requests auth
+    AuthenticationService --> CertificateValidator : uses
+    AuthenticationService --> SecurityPolicy : checks
+    AuthenticationService --> AccessToken : generates
+    AuthenticationService --> AuditLogger : logs

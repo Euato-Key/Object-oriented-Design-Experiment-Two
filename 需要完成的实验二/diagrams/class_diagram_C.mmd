@@ -1,0 +1,33 @@
+classDiagram
+    class DeploymentSystem {
+        +startDeployment(package, env)
+        +rollback(deploymentId)
+        +validatePackage(package)
+    }
+
+    class DeploymentPackage {
+        +String packageId
+        +String version
+        +File content
+    }
+
+    class TargetEnvironment {
+        +String envId
+        +String status
+        +checkCompatibility(package)
+    }
+
+    class DeploymentTask {
+        +String taskId
+        +String status
+        +execute()
+    }
+
+    class DeploymentLog {
+        +log(message)
+    }
+
+    DeploymentSystem --> DeploymentPackage : uses
+    DeploymentSystem --> TargetEnvironment : deploys to
+    DeploymentSystem --> DeploymentTask : creates
+    DeploymentTask --> DeploymentLog : records
