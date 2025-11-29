@@ -1,29 +1,30 @@
-deploymentDiagram
-    node "物联网设备层" {
-        node "传感器/执行器" as Device
-        node "边缘网关" as Gateway
-    }
+graph TD
+    subgraph IoT_Device_Layer["物联网设备层"]
+        Device["传感器/执行器"]
+        Gateway["边缘网关"]
+    end
 
-    node "平台服务端" {
-        node "接入服务器 (MQTT/CoAP)" as AccessServer
-        node "应用服务器 (Web/API)" as AppServer
-        node "数据存储" {
-            database "关系数据库 (MySQL)" as RDBMS
-            database "图数据库 (Neo4j)" as GraphDB
-            database "时序数据库 (InfluxDB)" as TSDB
-        }
-    }
+    subgraph Platform_Server["平台服务端"]
+        AccessServer["接入服务器 (MQTT/CoAP)"]
+        AppServer["应用服务器 (Web/API)"]
+        
+        subgraph Data_Storage["数据存储"]
+            RDBMS[("关系数据库 (MySQL)")]
+            GraphDB[("图数据库 (Neo4j)")]
+            TSDB[("时序数据库 (InfluxDB)")]
+        end
+    end
 
-    node "用户终端" {
-        node "Web浏览器 (PC)" as PC
-        node "移动端App" as Mobile
-    }
+    subgraph User_Terminal["用户终端"]
+        PC["Web浏览器 (PC)"]
+        Mobile["移动端App"]
+    end
 
-    Device -- Gateway : Zigbee/Bluetooth
-    Gateway -- AccessServer : MQTT/CoAP (TLS)
-    AccessServer -- AppServer : Internal API
-    AppServer -- RDBMS : JDBC
-    AppServer -- GraphDB : Bolt/HTTP
-    AppServer -- TSDB : HTTP
-    PC -- AppServer : HTTPS
-    Mobile -- AppServer : HTTPS
+    Device -- "Zigbee/Bluetooth" --> Gateway
+    Gateway -- "MQTT/CoAP (TLS)" --> AccessServer
+    AccessServer -- "Internal API" --> AppServer
+    AppServer -- "JDBC" --> RDBMS
+    AppServer -- "Bolt/HTTP" --> GraphDB
+    AppServer -- "HTTP" --> TSDB
+    PC -- "HTTPS" --> AppServer
+    Mobile -- "HTTPS" --> AppServer

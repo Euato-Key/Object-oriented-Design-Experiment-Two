@@ -1,21 +1,21 @@
 classDiagram
-    package "物联网设备知识图谱交互管理平台" {
-        class "子系统A: 设备接入与安全认证" as SubA {
+    namespace IoT_System {
+        class SubA["子系统A: 设备接入与安全认证"] {
             +设备连接管理
             +身份认证
             +安全通信
         }
-        class "子系统B: 设备监控与安全运维" as SubB {
+        class SubB["子系统B: 设备监控与安全运维"] {
             +实时状态监控
             +告警管理
             +日志审计
         }
-        class "子系统C: 设备资产与配置管理" as SubC {
+        class SubC["子系统C: 设备资产与配置管理"] {
             +设备档案管理
             +远程配置
             +固件升级
         }
-        class "子系统D: 知识图谱分析与智能服务" as SubD {
+        class SubD["子系统D: 知识图谱分析与智能服务"] {
             +图谱构建
             +关联分析
             +智能预测
